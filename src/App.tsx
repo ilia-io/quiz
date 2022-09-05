@@ -1,25 +1,22 @@
-import { useState } from "react";
-import BackgroundAnimation from "./components/BackgroundAnimation/BackgroundAnimation";
-import Game from "./components/Game";
+import { useState } from 'react';
+import BackgroundAnimation from './components/BackgroundAnimation/BackgroundAnimation';
+import Game from './components/Game';
+import Result from './components/Result';
 
 export const questions = [
   {
     title: 'React - это ... ?',
-    variants: ['библиотека', 'фреймворк', 'приложение'],
+    options: ['библиотека', 'фреймворк', 'приложение'],
     correct: 0,
   },
   {
     title: 'Компонент - это ... ',
-    variants: [
-      'приложение',
-      'часть приложения или страницы',
-      'то, что я не знаю что такое',
-    ],
+    options: ['приложение', 'часть приложения или страницы', 'файл стилей'],
     correct: 1,
   },
   {
     title: 'Что такое JSX?',
-    variants: [
+    options: [
       'Это простой HTML',
       'Это функция',
       'Это расширение синтаксиса JavaScript',
@@ -28,10 +25,10 @@ export const questions = [
   },
   {
     title: 'Что такое useState?',
-    variants: [
+    options: [
       'Это функция для хранения данных компонента',
       'Это глобальный стейт',
-      'Это когда ты знаешь ответ',
+      'Это сложно',
     ],
     correct: 0,
   },
@@ -44,12 +41,16 @@ function App() {
   return (
     <>
       <div className="App">
-        <Game
-          step={step}
-          setStep={setStep}
-          correctAnswerTotal={correctAnswerTotal}
-          setCorrectAnswerTotal={setCorrectAnswerTotal}
-        />
+        {step < questions.length ? (
+          <Game
+            step={step}
+            setStep={setStep}
+            correctAnswerTotal={correctAnswerTotal}
+            setCorrectAnswerTotal={setCorrectAnswerTotal}
+          />
+        ) : (
+          <Result correctAnswerTotal={correctAnswerTotal} />
+        )}
       </div>
 
       <BackgroundAnimation />

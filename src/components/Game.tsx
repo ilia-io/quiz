@@ -33,7 +33,7 @@ const Game: React.FC<TGame> = ({
       </div>
       <h1>{question.title}</h1>
       <ul>
-        {question.variants.map((item, index) => (
+        {question.options.map((item, index) => (
           <li onClick={() => handleClick(index)} key={index}>
             {item}
           </li>
